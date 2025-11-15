@@ -1,16 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
-let cursor = document.getElementById('cursor');
-let cursorGlow = document.getElementById('cursor-glow');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let quantity = 1;
-
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  cursorGlow.style.left = (e.clientX - 20) + 'px';
-  cursorGlow.style.top = (e.clientY - 20) + 'px';
-});
 
 updateCartCount();
 
@@ -21,6 +12,7 @@ function updateCartCount() {
   }
 }
 
+// 3D T-Shirt Viewer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -29,33 +21,71 @@ const canvas = document.getElementById('product-canvas');
 renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
 canvas.appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry(6, 3, 10);
-const material = new THREE.MeshPhysicalMaterial({
-  color: 0x000000,
-  metalness: 0.3,
-  roughness: 0.4,
-  clearcoat: 1.0,
-  clearcoatRoughness: 0.2
-});
-const shoe = new THREE.Mesh(geometry, material);
-scene.add(shoe);
+// Create T-shirt shape
+const tshirtGroup = new THREE.Group();
 
-const light1 = new THREE.DirectionalLight(0xffffff, 1);
+// Main body
+const bodyGeometry = new THREE.BoxGeometry(3, 4, 0.3);
+const bodyMaterial = new THREE.MeshStandardMaterial({
+  color: 0x000000,
+  metalness: 0.2,
+  roughness: 0.7,
+  emissive: 0x000000,
+  emissiveIntensity: 0.1
+});
+const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+tshirtGroup.add(body);
+
+// Left sleeve
+const leftSleeveGeometry = new THREE.BoxGeometry(1.5, 1.2, 0.3);
+const sleeveMaterial = new THREE.MeshStandardMaterial({
+  color: 0x000000,
+  metalness: 0.2,
+  roughness: 0.7,
+  emissive: 0x000000,
+  emissiveIntensity: 0.1
+});
+const leftSleeve = new THREE.Mesh(leftSleeveGeometry, sleeveMaterial);
+leftSleeve.position.set(-2.2, 1.5, 0);
+leftSleeve.rotation.z = 0.3;
+tshirtGroup.add(leftSleeve);
+
+// Right sleeve
+const rightSleeve = new THREE.Mesh(leftSleeveGeometry.clone(), sleeveMaterial.clone());
+rightSleeve.position.set(2.2, 1.5, 0);
+rightSleeve.rotation.z = -0.3;
+tshirtGroup.add(rightSleeve);
+
+// Collar/Neck
+const collarGeometry = new THREE.BoxGeometry(1, 0.5, 0.3);
+const collarMaterial = new THREE.MeshStandardMaterial({
+  color: 0x1a1a1a,
+  metalness: 0.2,
+  roughness: 0.7
+});
+const collar = new THREE.Mesh(collarGeometry, collarMaterial);
+collar.position.set(0, 2.2, 0);
+tshirtGroup.add(collar);
+
+scene.add(tshirtGroup);
+
+// Lighting
+const light1 = new THREE.DirectionalLight(0xffffff, 1.2);
 light1.position.set(5, 5, 5);
 scene.add(light1);
 
-const light2 = new THREE.PointLight(0xA761FF, 1.5);
+const light2 = new THREE.PointLight(0xA761FF, 1);
 light2.position.set(-5, 3, 5);
 scene.add(light2);
 
-const light3 = new THREE.PointLight(0x00C8FF, 1.5);
+const light3 = new THREE.PointLight(0x00C8FF, 1);
 light3.position.set(5, -3, 5);
 scene.add(light3);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-camera.position.z = 15;
+camera.position.z = 10;
 
 let isDragging = false;
 let previousMouseX = 0;
@@ -87,8 +117,8 @@ function animate() {
   }
 
   currentRotationY += (targetRotationY - currentRotationY) * 0.1;
-  shoe.rotation.y = currentRotationY;
-  shoe.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
+  tshirtGroup.rotation.y = currentRotationY;
+  tshirtGroup.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
 
   light2.position.x = Math.sin(Date.now() * 0.001) * 8;
   light3.position.x = Math.cos(Date.now() * 0.001) * 8;
@@ -127,7 +157,15 @@ document.querySelectorAll('.color-option').forEach(option => {
     };
 
     const selectedColor = option.dataset.color;
-    gsap.to(material.color, {
+    
+    gsap.to(bodyMaterial.color, {
+      r: ((colorMap[selectedColor] >> 16) & 255) / 255,
+      g: ((colorMap[selectedColor] >> 8) & 255) / 255,
+      b: (colorMap[selectedColor] & 255) / 255,
+      duration: 0.5
+    });
+
+    gsap.to(sleeveMaterial.color, {
       r: ((colorMap[selectedColor] >> 16) & 255) / 255,
       g: ((colorMap[selectedColor] >> 8) & 255) / 255,
       b: (colorMap[selectedColor] & 255) / 255,
@@ -186,9 +224,9 @@ document.getElementById('qty-minus')?.addEventListener('click', () => {
 document.getElementById('add-to-cart')?.addEventListener('click', () => {
   const product = {
     id: Date.now(),
-    name: 'Neon Runner X1',
-    price: '₹4,999',
-    image: 'images/p2.jpg',
+    name: 'Winter Tee - Premium',
+    price: '₹999',
+    image: 'images/p1.jpg',
     quantity: quantity
   };
 
@@ -215,9 +253,9 @@ document.getElementById('add-to-cart')?.addEventListener('click', () => {
 document.getElementById('buy-now')?.addEventListener('click', () => {
   const product = {
     id: Date.now(),
-    name: 'Neon Runner X1',
-    price: '₹4,999',
-    image: 'images/p2.jpg',
+    name: 'Winter Tee - Premium',
+    price: '₹999',
+    image: 'images/p1.jpg',
     quantity: quantity
   };
 
