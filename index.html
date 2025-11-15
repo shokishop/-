@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shoki — Shop in Future</title>
+  <title>Shoki — Winter T-Shirt Collection</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="cursor"></div>
-  <div id="cursor-glow"></div>
-
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">SHOKI</div>
@@ -30,7 +27,6 @@
 
   <section id="hero" class="hero-section">
     <div class="particles" id="particles"></div>
-    <div id="three-canvas"></div>
 
     <div class="hero-content">
       <div class="hero-text">
@@ -39,13 +35,13 @@
           <span class="line gradient-text">SHOKI</span>
         </h1>
         <p class="hero-subtitle">
-          <span class="line">Shop in Style.</span>
-          <span class="line">Shop in Future.</span>
+          <span class="line">Stay Warm.</span>
+          <span class="line">Stay Stylish.</span>
         </p>
       </div>
 
       <div class="hero-search">
-        <input type="text" placeholder="Search products..." class="search-input">
+        <input type="text" placeholder="Search t-shirts..." class="search-input">
         <button class="search-btn">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -55,7 +51,15 @@
 
       <div class="hero-buttons">
         <button class="btn-primary magnetic">Shop Now</button>
-        <button class="btn-outline magnetic">Explore Products</button>
+        <button class="btn-outline magnetic">Explore Collection</button>
+      </div>
+    </div>
+
+    <div class="tshirt-3d-container">
+      <canvas id="tshirt-canvas"></canvas>
+      <div class="product-label">
+        <h3>Winter Collection 2025</h3>
+        <p>Hover to rotate</p>
       </div>
     </div>
 
@@ -67,20 +71,20 @@
 
   <section id="featured" class="featured-section">
     <div class="container">
-      <h2 class="section-title">Featured Products</h2>
-      <p class="section-subtitle">Curated collection of premium items</p>
+      <h2 class="section-title">Featured T-Shirts</h2>
+      <p class="section-subtitle">Premium winter collection</p>
 
       <div class="products-grid" id="featured-grid">
         <div class="product-card" data-tilt>
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&q=80" alt="Product 1">
+            <img src="images/p1.jpg" alt="Winter Tee 1">
             <div class="product-badge">New</div>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Neon Runner X1</h3>
-            <p class="product-desc">Premium athletic footwear</p>
+            <h3 class="product-name">Winter Tee - Design 1</h3>
+            <p class="product-desc">Premium heavyweight cotton</p>
             <div class="product-footer">
-              <span class="product-price">₹4,999</span>
+              <span class="product-price">₹999</span>
               <button class="btn-add-cart" data-product="1">
                 <span>Add to Cart</span>
                 <span class="btn-icon">+</span>
@@ -91,14 +95,14 @@
 
         <div class="product-card" data-tilt>
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80" alt="Product 2">
+            <img src="images/p2.jpg" alt="Winter Tee 2">
             <div class="product-badge trending">Trending</div>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Aurora Watch</h3>
-            <p class="product-desc">Luxury smartwatch</p>
+            <h3 class="product-name">Winter Tee - Design 2</h3>
+            <p class="product-desc">Soft thermal fabric</p>
             <div class="product-footer">
-              <span class="product-price">₹12,999</span>
+              <span class="product-price">₹1,299</span>
               <button class="btn-add-cart" data-product="2">
                 <span>Add to Cart</span>
                 <span class="btn-icon">+</span>
@@ -109,14 +113,14 @@
 
         <div class="product-card" data-tilt>
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80" alt="Product 3">
+            <img src="images/p3.jpg" alt="Winter Tee 3">
             <div class="product-badge">Hot</div>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Shadow Sunglasses</h3>
-            <p class="product-desc">Designer eyewear</p>
+            <h3 class="product-name">Winter Tee - Design 3</h3>
+            <p class="product-desc">Warm & comfortable</p>
             <div class="product-footer">
-              <span class="product-price">₹2,499</span>
+              <span class="product-price">₹899</span>
               <button class="btn-add-cart" data-product="3">
                 <span>Add to Cart</span>
                 <span class="btn-icon">+</span>
@@ -127,14 +131,14 @@
 
         <div class="product-card" data-tilt>
           <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?w=800&q=80" alt="Product 4">
+            <img src="images/p5.jpg" alt="Winter Tee 5">
           </div>
           <div class="product-info">
-            <h3 class="product-name">Cyber Backpack</h3>
-            <p class="product-desc">Tech-ready travel gear</p>
+            <h3 class="product-name">Winter Tee - Design 5</h3>
+            <p class="product-desc">Perfect for cold weather</p>
             <div class="product-footer">
-              <span class="product-price">₹3,999</span>
-              <button class="btn-add-cart" data-product="4">
+              <span class="product-price">₹1,099</span>
+              <button class="btn-add-cart" data-product="5">
                 <span>Add to Cart</span>
                 <span class="btn-icon">+</span>
               </button>
@@ -146,22 +150,23 @@
   </section>
 
   <section id="showcase" class="showcase-section">
-    <div class="showcase-container">
-      <div class="showcase-3d">
-        <div id="showcase-canvas"></div>
-      </div>
-      <div class="showcase-content">
-        <div class="showcase-item" data-color="#A761FF">
-          <h3>Premium Materials</h3>
-          <p>Crafted with the finest materials for lasting quality</p>
+    <div class="container">
+      <h2 class="section-title">Why Shoki Winter Tees?</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">❄️</div>
+          <h3>Winter-Ready Fabric</h3>
+          <p>Premium heavyweight cotton perfect for cold weather</p>
         </div>
-        <div class="showcase-item" data-color="#00C8FF">
-          <h3>Innovative Design</h3>
-          <p>Next-generation aesthetics meet functionality</p>
+        <div class="feature-item">
+          <div class="feature-icon">🎨</div>
+          <h3>Unique Designs</h3>
+          <p>Exclusive graphics you won't find anywhere else</p>
         </div>
-        <div class="showcase-item" data-color="#FF6B9D">
-          <h3>Limited Edition</h3>
-          <p>Exclusive pieces you won't find anywhere else</p>
+        <div class="feature-item">
+          <div class="feature-icon">⭐</div>
+          <h3>Premium Quality</h3>
+          <p>Durable, comfortable, and built to last</p>
         </div>
       </div>
     </div>
@@ -170,19 +175,19 @@
   <section id="gallery" class="gallery-section">
     <div class="gallery-grid">
       <div class="gallery-item" data-speed="0.8">
-        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80" alt="Gallery 1">
+        <img src="images/p6.jpg" alt="Gallery 1">
         <div class="gallery-overlay">
           <h3>Latest Collection</h3>
         </div>
       </div>
       <div class="gallery-item" data-speed="1.2">
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&q=80" alt="Gallery 2">
+        <img src="images/p9.jpg" alt="Gallery 2">
         <div class="gallery-overlay">
           <h3>Trending Now</h3>
         </div>
       </div>
       <div class="gallery-item" data-speed="0.9">
-        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80" alt="Gallery 3">
+        <img src="images/p10.jpg" alt="Gallery 3">
         <div class="gallery-overlay">
           <h3>Best Sellers</h3>
         </div>
@@ -206,7 +211,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h3 class="logo">SHOKI</h3>
-          <p>Shop in Future</p>
+          <p>Winter Wear Essentials</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
@@ -238,6 +243,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="tshirt-3d.js"></script>
   <script src="app.js"></script>
 </body>
-</html>
+    </html>
