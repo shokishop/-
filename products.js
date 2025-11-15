@@ -1,18 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
-let cursor = document.getElementById('cursor');
-let cursorGlow = document.getElementById('cursor-glow');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let allProducts = [];
 
 updateCartCount();
-
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  cursorGlow.style.left = (e.clientX - 20) + 'px';
-  cursorGlow.style.top = (e.clientY - 20) + 'px';
-});
 
 gsap.to('.page-title', {
   opacity: 1,
