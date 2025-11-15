@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products — Shoki</title>
+  <title>Products — Shoki Winter Tees</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="products.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="cursor"></div>
-  <div id="cursor-glow"></div>
-
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">SHOKI</div>
@@ -31,8 +28,8 @@
 
   <section class="products-hero">
     <div class="container">
-      <h1 class="page-title">Discover Products</h1>
-      <p class="page-subtitle">Curated collection of premium items</p>
+      <h1 class="page-title">Winter T-Shirt Collection</h1>
+      <p class="page-subtitle">Premium winter wear for the cold season</p>
     </div>
   </section>
 
@@ -43,10 +40,10 @@
           <label>Category</label>
           <div class="filter-buttons">
             <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="footwear">Footwear</button>
-            <button class="filter-btn" data-category="accessories">Accessories</button>
-            <button class="filter-btn" data-category="electronics">Electronics</button>
-            <button class="filter-btn" data-category="fashion">Fashion</button>
+            <button class="filter-btn" data-category="graphic">Graphic</button>
+            <button class="filter-btn" data-category="plain">Plain</button>
+            <button class="filter-btn" data-category="longline">Longline</button>
+            <button class="filter-btn" data-category="oversized">Oversized</button>
           </div>
         </div>
 
@@ -61,10 +58,10 @@
         </div>
 
         <div class="filter-group">
-          <label>Price Range: ₹<span id="price-value">0 - 20000</span></label>
+          <label>Price Range: ₹<span id="price-value">0 - 2000</span></label>
           <div class="price-slider">
-            <input type="range" id="price-min" min="0" max="20000" value="0" step="500">
-            <input type="range" id="price-max" min="0" max="20000" value="20000" step="500">
+            <input type="range" id="price-min" min="0" max="2000" value="0" step="100">
+            <input type="range" id="price-max" min="0" max="2000" value="2000" step="100">
           </div>
         </div>
       </div>
@@ -78,17 +75,17 @@
       </div>
 
       <div class="products-masonry" id="products-container">
-        <div class="product-card" data-tilt data-category="footwear" data-price="4999" data-new="true">
+        <div class="product-card" data-tilt data-category="graphic" data-price="999" data-new="true">
           <div class="product-image">
-            <img src="images/p1.jpg" alt="Neon Runner X1">
+            <img src="images/p1.jpg" alt="Winter Tee 1">
             <div class="product-badge">New</div>
             <button class="quick-view" data-id="1">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Neon Runner X1</h3>
-            <p class="product-desc">Premium athletic footwear</p>
+            <h3 class="product-name">Winter Tee - Design 1</h3>
+            <p class="product-desc">Premium heavyweight cotton</p>
             <div class="product-footer">
-              <span class="product-price">₹4,999</span>
+              <span class="product-price">₹999</span>
               <button class="btn-add-cart" data-product="1">
                 <span>Add to Cart</span>
               </button>
@@ -96,17 +93,17 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="accessories" data-price="12999">
+        <div class="product-card" data-tilt data-category="graphic" data-price="1299">
           <div class="product-image">
-            <img src="images/p2.jpg" alt="Aurora Watch">
+            <img src="images/p2.jpg" alt="Winter Tee 2">
             <div class="product-badge trending">Trending</div>
             <button class="quick-view" data-id="2">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Aurora Watch</h3>
-            <p class="product-desc">Luxury smartwatch</p>
+            <h3 class="product-name">Winter Tee - Design 2</h3>
+            <p class="product-desc">Soft thermal fabric</p>
             <div class="product-footer">
-              <span class="product-price">₹12,999</span>
+              <span class="product-price">₹1,299</span>
               <button class="btn-add-cart" data-product="2">
                 <span>Add to Cart</span>
               </button>
@@ -114,16 +111,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="accessories" data-price="2499">
+        <div class="product-card" data-tilt data-category="plain" data-price="899">
           <div class="product-image">
-            <img src="images/p3.jpg" alt="Shadow Sunglasses">
+            <img src="images/p3.jpg" alt="Winter Tee 3">
             <button class="quick-view" data-id="3">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Shadow Sunglasses</h3>
-            <p class="product-desc">Designer eyewear</p>
+            <h3 class="product-name">Winter Tee - Design 3</h3>
+            <p class="product-desc">Warm & comfortable</p>
             <div class="product-footer">
-              <span class="product-price">₹2,499</span>
+              <span class="product-price">₹899</span>
               <button class="btn-add-cart" data-product="3">
                 <span>Add to Cart</span>
               </button>
@@ -131,16 +128,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="fashion" data-price="3999">
+        <div class="product-card" data-tilt data-category="oversized" data-price="1099">
           <div class="product-image">
-            <img src="images/p4.jpg" alt="Cyber Backpack">
+            <img src="images/p4.jpg" alt="Winter Tee 4">
             <button class="quick-view" data-id="4">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Cyber Backpack</h3>
-            <p class="product-desc">Tech-ready travel gear</p>
+            <h3 class="product-name">Winter Tee - Design 4</h3>
+            <p class="product-desc">Oversized fit</p>
             <div class="product-footer">
-              <span class="product-price">₹3,999</span>
+              <span class="product-price">₹1,099</span>
               <button class="btn-add-cart" data-product="4">
                 <span>Add to Cart</span>
               </button>
@@ -148,17 +145,17 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="electronics" data-price="8999" data-new="true">
+        <div class="product-card" data-tilt data-category="graphic" data-price="1199" data-new="true">
           <div class="product-image">
-            <img src="images/p5.jpg" alt="Bass Pro Headphones">
+            <img src="images/p5.jpg" alt="Winter Tee 5">
             <div class="product-badge">New</div>
             <button class="quick-view" data-id="5">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Bass Pro Headphones</h3>
-            <p class="product-desc">Wireless audio excellence</p>
+            <h3 class="product-name">Winter Tee - Design 5</h3>
+            <p class="product-desc">Perfect for cold weather</p>
             <div class="product-footer">
-              <span class="product-price">₹8,999</span>
+              <span class="product-price">₹1,199</span>
               <button class="btn-add-cart" data-product="5">
                 <span>Add to Cart</span>
               </button>
@@ -166,16 +163,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="footwear" data-price="6999">
+        <div class="product-card" data-tilt data-category="graphic" data-price="1099">
           <div class="product-image">
-            <img src="images/p6.jpg" alt="Urban Stride">
+            <img src="images/p6.jpg" alt="Winter Tee 6">
             <button class="quick-view" data-id="6">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Urban Stride</h3>
-            <p class="product-desc">Street style sneakers</p>
+            <h3 class="product-name">Winter Tee - Design 6</h3>
+            <p class="product-desc">Stylish winter essential</p>
             <div class="product-footer">
-              <span class="product-price">₹6,999</span>
+              <span class="product-price">₹1,099</span>
               <button class="btn-add-cart" data-product="6">
                 <span>Add to Cart</span>
               </button>
@@ -183,16 +180,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="fashion" data-price="1999">
+        <div class="product-card" data-tilt data-category="plain" data-price="799">
           <div class="product-image">
-            <img src="images/p7.jpg" alt="Minimal Tee">
+            <img src="images/p7.jpg" alt="Winter Tee 7">
             <button class="quick-view" data-id="7">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Minimal Tee</h3>
-            <p class="product-desc">Premium cotton basics</p>
+            <h3 class="product-name">Winter Tee - Design 7</h3>
+            <p class="product-desc">Classic minimalist style</p>
             <div class="product-footer">
-              <span class="product-price">₹1,999</span>
+              <span class="product-price">₹799</span>
               <button class="btn-add-cart" data-product="7">
                 <span>Add to Cart</span>
               </button>
@@ -200,14 +197,14 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="accessories" data-price="899">
+        <div class="product-card" data-tilt data-category="plain" data-price="899">
           <div class="product-image">
-            <img src="images/p8.jpg" alt="Leather Wallet">
+            <img src="images/p8.jpg" alt="Winter Tee 8">
             <button class="quick-view" data-id="8">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Leather Wallet</h3>
-            <p class="product-desc">Handcrafted essentials</p>
+            <h3 class="product-name">Winter Tee - Design 8</h3>
+            <p class="product-desc">Comfortable everyday wear</p>
             <div class="product-footer">
               <span class="product-price">₹899</span>
               <button class="btn-add-cart" data-product="8">
@@ -217,17 +214,17 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="electronics" data-price="15999" data-new="true">
+        <div class="product-card" data-tilt data-category="longline" data-price="1399" data-new="true">
           <div class="product-image">
-            <img src="images/p9.jpg" alt="Pocket Speaker">
+            <img src="images/p9.jpg" alt="Winter Tee 9">
             <div class="product-badge">New</div>
             <button class="quick-view" data-id="9">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Pocket Speaker</h3>
-            <p class="product-desc">Portable sound system</p>
+            <h3 class="product-name">Winter Tee - Design 9</h3>
+            <p class="product-desc">Extended longline cut</p>
             <div class="product-footer">
-              <span class="product-price">₹15,999</span>
+              <span class="product-price">₹1,399</span>
               <button class="btn-add-cart" data-product="9">
                 <span>Add to Cart</span>
               </button>
@@ -235,16 +232,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="fashion" data-price="5499">
+        <div class="product-card" data-tilt data-category="oversized" data-price="1199">
           <div class="product-image">
-            <img src="images/p10.jpg" alt="Tech Jacket">
+            <img src="images/p10.jpg" alt="Winter Tee 10">
             <button class="quick-view" data-id="10">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Tech Jacket</h3>
-            <p class="product-desc">Weather-resistant outerwear</p>
+            <h3 class="product-name">Winter Tee - Design 10</h3>
+            <p class="product-desc">Oversized cozy fit</p>
             <div class="product-footer">
-              <span class="product-price">₹5,499</span>
+              <span class="product-price">₹1,199</span>
               <button class="btn-add-cart" data-product="10">
                 <span>Add to Cart</span>
               </button>
@@ -252,16 +249,16 @@
           </div>
         </div>
 
-        <div class="product-card" data-tilt data-category="footwear" data-price="7999">
+        <div class="product-card" data-tilt data-category="graphic" data-price="1299">
           <div class="product-image">
-            <img src="images/p11.jpg" alt="Elite Runner">
+            <img src="images/p11.jpg" alt="Winter Tee 11">
             <button class="quick-view" data-id="11">Quick View</button>
           </div>
           <div class="product-info">
-            <h3 class="product-name">Elite Runner</h3>
-            <p class="product-desc">Performance footwear</p>
+            <h3 class="product-name">Winter Tee - Design 11</h3>
+            <p class="product-desc">Premium graphic tee</p>
             <div class="product-footer">
-              <span class="product-price">₹7,999</span>
+              <span class="product-price">₹1,299</span>
               <button class="btn-add-cart" data-product="11">
                 <span>Add to Cart</span>
               </button>
@@ -313,7 +310,7 @@
       <div class="footer-content">
         <div class="footer-brand">
           <h3 class="logo">SHOKI</h3>
-          <p>Shop in Future</p>
+          <p>Winter Wear Essentials</p>
         </div>
         <div class="footer-links">
           <div class="footer-col">
@@ -346,4 +343,4 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="products.js"></script>
 </body>
-              </html>
+  </html>
