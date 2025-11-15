@@ -188,7 +188,7 @@ document.getElementById('add-to-cart')?.addEventListener('click', () => {
     id: Date.now(),
     name: 'Neon Runner X1',
     price: '₹4,999',
-    image: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&q=80',
+    image: 'images/p2.jpg',
     quantity: quantity
   };
 
@@ -217,7 +217,7 @@ document.getElementById('buy-now')?.addEventListener('click', () => {
     id: Date.now(),
     name: 'Neon Runner X1',
     price: '₹4,999',
-    image: 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=800&q=80',
+    image: 'images/p2.jpg',
     quantity: quantity
   };
 
