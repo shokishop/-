@@ -1,19 +1,10 @@
 gsap.registerPlugin(ScrollTrigger);
 
-let cursor = document.getElementById('cursor');
-let cursorGlow = document.getElementById('cursor-glow');
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 updateCartCount();
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-
-  cursorGlow.style.left = (e.clientX - 20) + 'px';
-  cursorGlow.style.top = (e.clientY - 20) + 'px';
-});
-
+// Magnetic button effect
 document.querySelectorAll('.magnetic').forEach(btn => {
   btn.addEventListener('mousemove', (e) => {
     const rect = btn.getBoundingClientRect();
@@ -38,39 +29,12 @@ document.querySelectorAll('.magnetic').forEach(btn => {
   });
 });
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.getElementById('three-canvas').appendChild(renderer.domElement);
-
-const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-const material = new THREE.MeshStandardMaterial({
-  color: 0xA761FF,
-  metalness: 0.7,
-  roughness: 0.2,
-  wireframe: false
-});
-const torusKnot = new THREE.Mesh(geometry, material);
-scene.add(torusKnot);
-
-const light1 = new THREE.PointLight(0xA761FF, 2, 100);
-light1.position.set(20, 20, 20);
-scene.add(light1);
-
-const light2 = new THREE.PointLight(0x00C8FF, 2, 100);
-light2.position.set(-20, -20, 20);
-scene.add(light2);
-
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
-
-camera.position.z = 30;
-
+// Subtle floating particles
 function createParticles() {
   const particlesContainer = document.getElementById('particles');
-  for (let i = 0; i < 50; i++) {
+  if (!particlesContainer) return;
+  
+  for (let i = 0; i < 15; i++) {
     const particle = document.createElement('div');
     particle.style.position = 'absolute';
     particle.style.width = Math.random() * 3 + 1 + 'px';
@@ -79,7 +43,7 @@ function createParticles() {
     particle.style.background = Math.random() > 0.5 ? '#A761FF' : '#00C8FF';
     particle.style.left = Math.random() * 100 + '%';
     particle.style.top = Math.random() * 100 + '%';
-    particle.style.opacity = Math.random() * 0.5 + 0.2;
+    particle.style.opacity = Math.random() * 0.2 + 0.05;
     particle.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
     particlesContainer.appendChild(particle);
   }
@@ -97,37 +61,7 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-  mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-});
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  torusKnot.rotation.x += 0.005;
-  torusKnot.rotation.y += 0.005;
-
-  torusKnot.rotation.x += mouseY * 0.001;
-  torusKnot.rotation.y += mouseX * 0.001;
-
-  light1.position.x = Math.sin(Date.now() * 0.001) * 30;
-  light1.position.y = Math.cos(Date.now() * 0.001) * 30;
-
-  renderer.render(scene, camera);
-}
-
-animate();
-
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
+// Hero timeline animation
 const heroTl = gsap.timeline();
 
 heroTl.to('.hero-title .line', {
@@ -162,18 +96,7 @@ gsap.set('.hero-subtitle .line', { opacity: 0, y: 50 });
 gsap.set('.hero-search', { opacity: 0, y: 30 });
 gsap.set('.hero-buttons', { opacity: 0, y: 30 });
 
-ScrollTrigger.create({
-  trigger: '.hero-section',
-  start: 'top top',
-  end: 'bottom top',
-  scrub: true,
-  onUpdate: (self) => {
-    const progress = self.progress;
-    torusKnot.rotation.y = progress * Math.PI * 2;
-    torusKnot.position.y = progress * -20;
-  }
-});
-
+// Product cards animation
 gsap.utils.toArray('.product-card').forEach((card, i) => {
   gsap.to(card, {
     opacity: 1,
@@ -191,83 +114,25 @@ gsap.utils.toArray('.product-card').forEach((card, i) => {
   gsap.set(card, { opacity: 0, y: 50 });
 });
 
-const showcaseScene = new THREE.Scene();
-const showcaseCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-const showcaseRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
-const showcaseCanvas = document.getElementById('showcase-canvas');
-if (showcaseCanvas) {
-  showcaseRenderer.setSize(showcaseCanvas.offsetWidth, showcaseCanvas.offsetHeight);
-  showcaseCanvas.appendChild(showcaseRenderer.domElement);
-
-  const shoeGeometry = new THREE.BoxGeometry(8, 4, 12);
-  const shoeMaterial = new THREE.MeshPhysicalMaterial({
-    color: 0xA761FF,
-    metalness: 0.8,
-    roughness: 0.2,
-    clearcoat: 1.0,
-    clearcoatRoughness: 0.1
-  });
-  const shoe = new THREE.Mesh(shoeGeometry, shoeMaterial);
-  showcaseScene.add(shoe);
-
-  const showcaseLight1 = new THREE.DirectionalLight(0xffffff, 1);
-  showcaseLight1.position.set(5, 5, 5);
-  showcaseScene.add(showcaseLight1);
-
-  const showcaseLight2 = new THREE.PointLight(0x00C8FF, 1);
-  showcaseLight2.position.set(-5, 0, 5);
-  showcaseScene.add(showcaseLight2);
-
-  const showcaseAmbient = new THREE.AmbientLight(0xffffff, 0.5);
-  showcaseScene.add(showcaseAmbient);
-
-  showcaseCamera.position.z = 20;
-
-  function animateShowcase() {
-    requestAnimationFrame(animateShowcase);
-    shoe.rotation.y += 0.01;
-    showcaseRenderer.render(showcaseScene, showcaseCamera);
-  }
-
-  animateShowcase();
-
-  ScrollTrigger.create({
-    trigger: '.showcase-section',
-    start: 'top center',
-    end: 'bottom center',
-    scrub: true,
-    onUpdate: (self) => {
-      shoe.rotation.y = self.progress * Math.PI * 2;
+// Feature items animation
+gsap.utils.toArray('.feature-item').forEach((item, i) => {
+  gsap.to(item, {
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: i * 0.2,
+    scrollTrigger: {
+      trigger: item,
+      start: 'top 80%',
+      end: 'top 50%',
+      toggleActions: 'play none none reverse'
     }
   });
 
-  document.querySelectorAll('.showcase-item').forEach((item, i) => {
-    gsap.to(item, {
-      opacity: 1,
-      x: 0,
-      duration: 1,
-      scrollTrigger: {
-        trigger: item,
-        start: 'top 80%',
-        end: 'top 50%',
-        toggleActions: 'play none none reverse',
-        onEnter: () => {
-          const color = item.dataset.color;
-          gsap.to(shoeMaterial.color, {
-            r: parseInt(color.slice(1, 3), 16) / 255,
-            g: parseInt(color.slice(3, 5), 16) / 255,
-            b: parseInt(color.slice(5, 7), 16) / 255,
-            duration: 0.5
-          });
-        }
-      }
-    });
+  gsap.set(item, { opacity: 0, y: 50 });
+});
 
-    gsap.set(item, { opacity: 0, x: -50 });
-  });
-}
-
+// Gallery parallax effect
 gsap.utils.toArray('.gallery-item').forEach((item) => {
   const speed = item.dataset.speed || 1;
 
@@ -298,6 +163,7 @@ gsap.utils.toArray('.gallery-item').forEach((item) => {
   gsap.set(item.querySelector('img'), { filter: 'grayscale(0.8) blur(5px)', scale: 0.9 });
 });
 
+// Product card tilt effect
 document.querySelectorAll('[data-tilt]').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
@@ -329,6 +195,7 @@ document.querySelectorAll('[data-tilt]').forEach(card => {
   });
 });
 
+// Add to cart functionality
 document.querySelectorAll('.btn-add-cart').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -359,7 +226,7 @@ document.querySelectorAll('.btn-add-cart').forEach(btn => {
     });
 
     const ripple = document.createElement('div');
-    ripple.style.position = 'absolute';
+    ripple.style.position = 'fixed';
     ripple.style.width = '10px';
     ripple.style.height = '10px';
     ripple.style.borderRadius = '50%';
@@ -394,6 +261,7 @@ function updateCartCount() {
   }
 }
 
+// Newsletter form
 document.querySelector('.newsletter-form')?.addEventListener('submit', (e) => {
   e.preventDefault();
   const input = document.querySelector('.newsletter-input');
@@ -414,12 +282,13 @@ document.querySelector('.newsletter-form')?.addEventListener('submit', (e) => {
   });
 });
 
+// Button navigation
 document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
   if (btn.textContent.includes('Shop Now')) {
     btn.addEventListener('click', () => {
       window.location.href = 'products.html';
     });
-  } else if (btn.textContent.includes('Explore Products')) {
+  } else if (btn.textContent.includes('Explore')) {
     btn.addEventListener('click', () => {
       document.querySelector('.featured-section').scrollIntoView({
         behavior: 'smooth'
